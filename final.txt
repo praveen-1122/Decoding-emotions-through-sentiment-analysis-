@@ -1,0 +1,10 @@
+from scripts.fetch_tweets import fetch_tweets
+from scripts.preprocess import preprocess_dataset
+from scripts.train_model import train_model
+from visualizations.plot_results import plot_sentiments
+
+if __name__ == "__main__":
+    fetch_tweets("climate change", max_tweets=200)
+    preprocess_dataset()
+    train_model()
+    plot_sentiments()

@@ -1,0 +1,13 @@
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+def plot_sentiments():
+    df = pd.read_csv("data/processed_tweets.csv")
+    sns.countplot(data=df, x="sentiment", palette="coolwarm")
+    plt.title("Sentiment Distribution")
+    plt.xlabel("Sentiment")
+    plt.ylabel("Count")
+    plt.tight_layout()
+    plt.savefig("visualizations/sentiment_plot.png")
+    plt.show()

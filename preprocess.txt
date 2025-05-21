@@ -1,0 +1,22 @@
+import pandas as pd
+import re
+from textblob import TextBlob
+import nltk
+nltk.download('stopwords')
+from nltk.corpus import stopwords
+
+STOPWORDS = set(stopwords.words('english'))
+
+def clean_text(text):
+    text = re.sub(r"http\S+|@\S+|#[A-Za-z0-9_]+", "", text)
+    text = re.sub(r"[^\w\s]", "", text.lower())
+    text = " ".join([word for word in text.split() if word not in STOPWORDS])
+    return text
+
+def preprocess_dataset():
+    df = pd.read_csv("data/twitter_data.csv")
+    df["clean_text"] = df["text"].apply(clean_text)
+    df["polarity"] = df["clean_text"].apply(lambda x: TextBlob(x).sentiment.polarity)
+    df["sentiment"] = df["polarity"].apply(lambda p: "positive" if p > 0 else "negative" if p < 0 else "neutral")
+    df.to_csv("data/processed_tweets.csv", index=False)
+    print("Preprocessing complete.")

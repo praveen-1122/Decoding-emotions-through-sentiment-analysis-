@@ -51,7 +51,7 @@ Clone this repository:
 bash
 Copy
 Edit
-git clone https://github.com/yourusername/sentiment-analysis-social-media.git
+git clone https://github.com/praveen-1122/sentiment-analysis-social-media.git
 cd sentiment-analysis-social-media
 Install dependencies:
 
